@@ -13,8 +13,8 @@
         <h1 class="text-4xl font-bold text-black text-left">SwinIR: Restore</h1>
     </header>
 
-    <!-- Contenido principal centrado debajo de la barra superior -->
-    <main class="flex-grow flex justify-center items-center pt-16 pb-20"> <!-- Ajuste de padding para no solapar con la barra y pie de página -->
+
+    <main class="flex-grow flex justify-center items-center pt-16 pb-20">
         <div class="text-center">
             <div class="flex justify-center">
                 <div class="rounded-xl border-2 border-dashed border-indigo-500 p-6 max-w-sm bg-indigo-800 text-white">
@@ -24,16 +24,15 @@
                         </div>
                         <label class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded mb-2 cursor-pointer">
                             Cargar Imagen
-                            <input type="file" class="hidden" accept=" image/png" onchange="alert('Archivo cargado: ' + this.files[0].name)">
+                            <input type="file" class="hidden" accept="image/jpg image/png image/tiff image/jpeg" onchange="alert('Archivo cargado: ' + this.files[0].name)">
                         </label>
-                        <p class="text-indigo-300">o arrastra un archivo (.png)</p>
+                        <p class="text-indigo-300">o arrastra un archivo (.png, .jpg, .jpeg, .tiff)</p>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Pie de página con "Todos los derechos reservados" -->
     <footer class="text-center py-4">
         <span class="text-sm text-gray-600">&copy; 2024 SwinIR. Todos los derechos reservados.</span>
     </footer>
