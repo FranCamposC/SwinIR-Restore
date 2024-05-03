@@ -8,13 +8,11 @@
 </head>
 <body class="bg-gray-100 h-screen flex flex-col justify-between">
 
-    <!-- Barra superior azul con el título alineado a la izquierda -->
     <header class="w-full bg-blue-300 py-2 px-4 fixed top-0 z-10">
         <h1 class="text-4xl font-bold text-black text-left">SwinIR: Restore</h1>
     </header>
 
-    <!-- Contenido principal centrado debajo de la barra superior -->
-    <main class="flex-grow flex justify-center items-center pt-16 pb-20"> <!-- Ajuste de padding para no solapar con la barra y pie de página -->
+    <main class="flex-grow flex justify-center items-center pt-16 pb-20"> 
         <div class="text-center">
             <div class="flex justify-center">
                 <div class="rounded-xl border-2 border-dashed border-indigo-500 p-6 max-w-sm bg-indigo-800 text-white">
@@ -28,8 +26,8 @@
                                 <input type="file" name="file" class="hidden" accept="image/jpeg, image/png">
                             </label>
                             <br></br>
-                            <p class="text-indigo-300">o arrastra un archivo (.jpeg, .png)</p>
-                            <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded mt-4">Subir</button>
+                            <p class="text-indigo-300">o arrastra un archivo</p>
+                            <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded mt-4">Mejorar imagen</button>
                         </form>
                     </div>
                 </div>
@@ -37,7 +35,7 @@
         </div>
     </main>
 
-    <!-- Mostrar imagen procesada y botón de descarga -->
+
     {% if processed_image %}
     <div class="flex flex-col items-center justify-center my-4">
         <img src="{{ url_for('static', filename=processed_image) }}" alt="Processed Image" class="w-32 h-32"> <!-- Tamaño de imagen ajustado -->
@@ -47,13 +45,12 @@
     </div>
     {% endif %}
 
-    <!-- Pie de página con "Todos los derechos reservados" -->
+
     <footer class="text-center py-4">
         <span class="text-sm text-gray-600">&copy; 2024 SwinIR. Todos los derechos reservados.</span>
     </footer>
 
     <script>
-        // Si se necesita funcionalidad adicional para el manejo de archivos, se puede agregar aquí
     </script>
 
 </body>
