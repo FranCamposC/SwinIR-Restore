@@ -47,7 +47,8 @@ def uploaded_file(filename):
     time.sleep(4) 
     processed_filename = filename.rsplit('.', 1)[0] + '_SwinIR.png'
     processed_filepath = os.path.join(app.config['RESULT_FOLDER'], processed_filename).replace('\\', '/')
-    return render_template('index.html', processed_image=processed_filepath)
+    original_filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename).replace('\\', '/')
+    return render_template('index.html', processed_image=processed_filepath, original_image=original_filepath)
 
 
 

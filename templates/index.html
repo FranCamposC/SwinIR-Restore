@@ -15,42 +15,78 @@
     <main class="flex-grow flex justify-center items-center pt-16 pb-20"> 
         <div class="text-center">
             <div class="flex justify-center">
-                <div class="rounded-xl border-2 border-dashed border-indigo-500 p-6 max-w-sm bg-indigo-800 text-white">
-                    <div class="flex flex-col items-center justify-center">
-                        <form action="/" method="post" enctype="multipart/form-data">
-                            <div class="flex items-center justify-center mb-4">
-                                <svg class="w-12 h-12 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8l5-5m0 0l5 5m-5-5v12"></path></svg>
-                            </div>
-                            <label class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded mb-2 cursor-pointer">
-                                Cargar Imagen
-                                <input type="file" name="file" class="hidden" accept="image/jpeg, image/png">
-                            </label>
-                            <br></br>
-                            <p class="text-indigo-300">o arrastra un archivo</p>
-                            <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded mt-4">Mejorar imagen</button>
-                        </form>
-                    </div>
+                <div id="upload-container" class="rounded-xl border-2 border-dashed border-indigo-500 p-6 bg-indigo-800 text-white flex flex-col items-center" ondragover="event.preventDefault();" ondrop="handleDrop(event)">
+                    <form action="/" method="post" enctype="multipart/form-data" class="w-full">
+                        <div class="flex items-center justify-center mb-4">
+                            <svg class="w-12 h-12 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8l5-5m0 0l5 5m-5-5v12"></path></svg>
+                        </div>
+                        <label class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded mb-2 cursor-pointer">
+                            Cargar Imagen
+                            <input type="file" name="file" id="inputFile" class="hidden" accept="image/jpeg, image/png, image/tiff" onchange="handleFileInput(event)">
+                        </label>
+                        <br>
+                        <p id="drag-text" class="text-indigo-300">o arrastra un archivo</p>
+                        
+                        <!-- Contenedor de previsualización justo encima del botón "Mejorar imagen" -->
+                        <div id="original-preview" class="hidden mt-4">
+                            <img id="preview-image" alt="Imagen Original" class="rounded-lg"> <!-- Imagen con bordes redondeados -->
+                        </div>
+                        
+                        <!-- Botón para mejorar la imagen -->
+                        <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded mt-4">Mejorar imagen</button>
+                    </form>
                 </div>
             </div>
         </div>
     </main>
 
-
     {% if processed_image %}
-    <div class="flex flex-col items-center justify-center my-4">
-        <img src="{{ url_for('static', filename=processed_image) }}" alt="Processed Image" class="w-32 h-32"> <!-- Tamaño de imagen ajustado -->
+    <div class="flex flex-col items-center justificar-center my-4">
+        <h2 class="text-xl font-bold text-gray-800">Imagen Mejorada</h2>
+        <img src="{{ url_for('static', filename=processed_image) }}" alt="Processed Image" class="w-32 h-32"> <!-- Tamaño ajustado -->
         <a href="{{ url_for('static', filename=processed_image) }}" download class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
             Descargar Imagen
         </a>
     </div>
     {% endif %}
 
-
     <footer class="text-center py-4">
         <span class="text-sm text-gray-600">&copy; 2024 SwinIR. Todos los derechos reservados.</span>
     </footer>
 
     <script>
+    // Función para previsualizar la imagen cargada
+    function previewImage(files) {
+        var preview = document.getElementById("preview-image");
+        var originalPreviewContainer = document.getElementById("original-preview");
+        var dragText = document.getElementById("drag-text");
+
+        if (files && files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;  // Asignar la imagen cargada al elemento `src` del `img`
+                originalPreviewContainer.classList.remove('hidden'); // Mostrar el contenedor de la imagen
+                dragText.classList.add('hidden'); // Ocultar el texto "o arrastra un archivo"
+            };
+            reader.readAsDataURL(files[0]); // Leer la imagen cargada
+        }
+    }
+
+    // Función para manejar el evento de "soltar" la imagen
+    function handleDrop(event) {
+        event.preventDefault();
+        var files = event.dataTransfer.files;
+        var inputFile = document.getElementById("inputFile");
+        inputFile.files = files; // Asigna los archivos al input
+
+        // Llama directamente a la función de previsualización con los archivos soltados
+        previewImage(files);
+    }
+
+    // Función para manejar el evento "change" del input file
+    function handleFileInput(event) {
+        previewImage(event.target.files);
+    }
     </script>
 
 </body>
