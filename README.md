@@ -1,4 +1,4 @@
-﻿# SwinIR-Restore
+# SwinIR-Restore
 
 README.txt
 
@@ -45,8 +45,9 @@ python app.py runserver
 
 Abra el navegador y vaya a la siguiente URL (por defecto): http://127.0.0.1:5000
 
-![Página web]([https://ejemplo.com/imagen.png](https://github.com/FranCamposC/SwinIR-Restore/blob/main/imagenesReadme/image4.PNG))
+![Página web](https://github.com/FranCamposC/SwinIR-Restore/blob/main/imagenesReadme/image4.PNG)
 
 Le daremos a 'Cargar imagen' y automáticamente después, pulsaremos en 'Mejorar imagen'. Una vez hecho esto, esperaremos a que concluya el algoritmo y nos aparecerá la foto para que la podamos descargar:
 
-![Descargar imagen]([https://ejemplo.com/imagen.png](https://github.com/FranCamposC/SwinIR-Restore/blob/main/imagenesReadme/image5.png))
+![Descargar imagen](https://github.com/FranCamposC/SwinIR-Restore/blob/main/imagenesReadme/image5.png)
+
