@@ -50,12 +50,10 @@
                         <br>
                         <p id="drag-text" class="text-indigo-300">o arrastra un archivo</p>
                         
-                        <!-- Contenedor de previsualización justo encima del botón "Mejorar imagen" -->
                         <div id="original-preview" class="hidden mt-4">
-                            <img id="preview-image" alt="Imagen Original" class="rounded-lg"> <!-- Imagen con bordes redondeados -->
+                            <img id="preview-image" alt="Imagen Original" class="rounded-lg"> 
                         </div>
                         
-                        <!-- Botón para mejorar la imagen -->
                         <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded mt-4">Mejorar imagen</button>
                     </form>
                 </div>
@@ -73,12 +71,17 @@
     </div>
     {% endif %}
 
+    {% if processing_time %}
+    <div class="flex flex-col items-center justificar-center my-4">
+        <h2 class="text-xl font-bold text-gray-800">Tiempo de procesamiento: {{ processing_time }} segundos</h2>
+    </div>
+    {% endif %}
+
     <footer class="text-center py-4">
         <span class="text-sm text-gray-600">&copy; 2024 SwinIR. Todos los derechos reservados.</span>
     </footer>
 
     <script>
-    // Función para previsualizar la imagen cargada
     function previewImage(files) {
         var preview = document.getElementById("preview-image");
         var originalPreviewContainer = document.getElementById("original-preview");
@@ -87,11 +90,11 @@
         if (files && files[0]) {
             var reader = new FileReader();
             reader.onload = function(e) {
-                preview.src = e.target.result;  // Asignar la imagen cargada al elemento `src` del `img`
-                originalPreviewContainer.classList.remove('hidden'); // Mostrar el contenedor de la imagen
-                dragText.classList.add('hidden'); // Ocultar el texto "o arrastra un archivo"
+                preview.src = e.target.result; 
+                originalPreviewContainer.classList.remove('hidden'); 
+                dragText.classList.add('hidden'); 
             };
-            reader.readAsDataURL(files[0]); // Leer la imagen cargada
+            reader.readAsDataURL(files[0]);
         }
     }
 
