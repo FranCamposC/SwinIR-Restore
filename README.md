@@ -25,7 +25,7 @@ A partir de aquí, se explicarán los dos métodos mencionados anteriormente:
 
 5.2. Primer método (método original del algoritmo):
 
-Coloque las imágenes que desee restaurar en la carpeta "RealSRSet+5images" dentro de la carpeta llamada "testsets".
+Crearemos una carpeta en el directorio que hemos extraído que se llamará “testsets” y una carpeta dentro de ella que se llamará “RealSRSet+5images”. Pondremos dentro las imágenes que queramos restaurar. Abriremos la consola y ejecutaremos el siguiente comando:
 
 Abra la consola y ejecute el siguiente comando:
 
